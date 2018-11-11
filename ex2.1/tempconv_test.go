@@ -16,7 +16,7 @@ func TestTempConv(t *testing.T) {
 	}
 	eps := 0.0000001 // acceptable floating point error
 	for _, test := range tests {
-		if math.Abs(float64(CToF(test.c)-test.f)) > eps {
+		if math.Abs(float64(CToF(test.c)-test.f)) > eps { //定义的很清楚了可以说
 			t.Errorf("CToF(%s): got %s, want %s", test.c, CToF(test.c), test.f)
 		}
 		if math.Abs(float64(FToC(test.f)-test.c)) > eps {
