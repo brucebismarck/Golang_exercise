@@ -1,4 +1,4 @@
-// Surace COMPUTES AN svg rendering of a 3-D surface function
+// Surace COMPUTES AN svg rendering of saddle or eggbox
 package main
 
 import (
@@ -22,8 +22,9 @@ var sin30, cos30 = math.Sin(angle), math.Cos(angle) // sin(30°), cos(30°)
 type zFunc func(x, y float64) float64
 
 func svg(w io.Writer, f zFunc) {
-	fmt.Printf("svg xmlns = 'http://www.w3.org/2000/svg' "+"style=' stroke: grey; fill: white; stroke-width: 0.7' "+
-		"width = '%d' height='%d'>", width, height)
+	fmt.Fprintf(w, "<svg xmlns='http://www.w3.org/2000/svg' "+
+		"style='stroke: grey; fill: white; stroke-width: 0.7' "+
+		"width='%d' height='%d'>", width, height)
 	for i := 0; i < cells; i++ {
 		for j := 0; j < cells; j++ {
 			ax, ay := corner(i+1, j, f)
