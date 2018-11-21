@@ -14,18 +14,28 @@ func main() {
 	counts := make(map[rune]int)    // count of Unicode characters
 	var utflen [utf8.UTFMax + 1]int // count of lengths of UTF-8 encodings
 	invalid := 0                    // count of invalid UTF-8 characters
+	letterct := 0
+	digitct := 0
 
 	in := bufio.NewReader(os.Stdin)
 	for {
 		r, n, err := in.ReadRune() //returns rune, nbytes, error
-		if err == io.EOF {         // End of file
-			break
+		if err == io.EOF {         // End of file, the only error will be EOF
+			break				   // Because this is the only error, we can stop the loop
 		}
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "charcount: %v\n", err)
 		}
 		if r == unicode.ReplacementChar && n == 1 { //rune == ReplacementChar
 			invalid++
+			continue
+		}
+		if unicode.IsLetter(r) == true{
+			letterct++
+			continue
+		}
+		if unicode.IsDigit(r) == true{
+			digitct++
 			continue
 		}
 		counts[r]++
@@ -44,5 +54,4 @@ func main() {
 	if invalid > 0 {
 		fmt.Printf("\n%d invalid UTF-8 characters\n", invalid)
 	}
-
 }
