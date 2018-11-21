@@ -21,7 +21,7 @@ func main() {
 	for {
 		r, n, err := in.ReadRune() //returns rune, nbytes, error
 		if err == io.EOF {         // End of file, the only error will be EOF
-			break				   // Because this is the only error, we can stop the loop
+			break // Because this is the only error, we can stop the loop
 		}
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "charcount: %v\n", err)
@@ -30,11 +30,11 @@ func main() {
 			invalid++
 			continue
 		}
-		if unicode.IsLetter(r) == true{
+		if unicode.IsLetter(r) == true {
 			letterct++
 			continue
 		}
-		if unicode.IsDigit(r) == true{
+		if unicode.IsDigit(r) == true {
 			digitct++
 			continue
 		}
