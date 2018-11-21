@@ -51,7 +51,10 @@ func main() {
 			fmt.Printf("%d\t%d\n", i, n)
 		}
 	}
-	if invalid > 0 {
-		fmt.Printf("\n%d invalid UTF-8 characters\n", invalid)
+	if letterct > 0 {
+		fmt.Printf("\n%d letters\n", letterct)
+	}
+	if digitct > 0 {
+		fmt.Printf("\n%d digits\n", digitct)
 	}
 }
